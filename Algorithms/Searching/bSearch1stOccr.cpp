@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+int result;
+int bSearch(int arr[], int left, int right, int item) {
+  int mid;
+  if(left<=right) {
+    mid = (left+right)/2;
+    if(arr[mid] == item) {
+      result = mid;
+      return bSearch(arr, left, mid-1, item);
+    }
+    else if(arr[mid] < item) return bSearch(arr, mid+1, right, item);
+    else return bSearch(arr, left, mid-1, item);
+  }
+  else return result;
+}
+
+int main() {
+  int n;
+  cin>>n;
+  int arr[n];
+  int i=0;
+  for(i=0; i<n; i++) {
+    cin>>arr[i];
+  }
+  int right = i - 1;
+  int left = 0;
+  int item;
+  cin>>item;
+  cout<<bSearch(arr, left, right, item);
+  return 0;
+}
